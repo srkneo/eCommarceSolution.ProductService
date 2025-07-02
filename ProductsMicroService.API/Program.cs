@@ -1,6 +1,29 @@
+using eCommerce.ProductsService.DataAccessLayer;
+using eCommerce.ProductsService.BusinessLogicLayer;
+using FluentValidation.AspNetCore;
+using ProductsMicroService.API.Middleware;
+
 var builder = WebApplication.CreateBuilder(args);
+
+//Add Dal and bll services
+builder.Services.AddDataAccessLayer();
+builder.Services.AddBusinessLogicLayer();
+
+builder.Services.AddControllers();
+
+
+//FluentValidations
+builder.Services.AddFluentValidationAutoValidation();
+
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+app.UseExceptionHandlingMiddleware();
+app.UseRouting();
+
+//auth
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();
