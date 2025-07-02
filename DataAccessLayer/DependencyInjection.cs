@@ -1,19 +1,18 @@
 ﻿// DataAccessLayer/DependencyInjection.cs
+using eCommerce.DataAccessLayer.Context;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-//using Microsoft.Extensions.Configuration;
-//using Microsoft.EntityFrameworkCore;
-//using eCommerce.DataAccessLayer.Context;
-//using eCommerce.DataAccessLayer.Repositories;
-//using eCommerce.DataAccessLayer.RepositoryContracts;
 
 namespace eCommerce.ProductsService.DataAccessLayer;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddDataAccessLayer(this IServiceCollection services)
+    public static IServiceCollection AddDataAccessLayer(this IServiceCollection services,
+        IConfiguration configuration)
     {
-        //services.AddDbContext<ApplicationDbContext>(options =>
-        //    options.UseMySQL(configuration.GetConnectionString("DefaultConnection")!));
+        services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseMySQL(configuration.GetConnectionString("DefaultConnection")!));
 
         //services.AddScoped<IProductsRepository, ProductsRepository>();
 
