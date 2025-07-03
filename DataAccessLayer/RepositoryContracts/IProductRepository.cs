@@ -1,7 +1,7 @@
 ﻿// File: DataAccessLayer/RepositoryContracts/IProductsRepository.cs
 
 using System.Linq.Expressions;
-using DataAccessLayer.Entities;
+using eCommerce.DataAccessLayer.Entities;
 
 
 namespace eCommerce.DataAccessLayer.RepositoryContracts;
