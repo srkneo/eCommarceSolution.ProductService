@@ -28,12 +28,24 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Add Cors
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        builder => builder.WithOrigins("http://localhost:4200")
+                          .AllowAnyMethod()
+                          .AllowAnyHeader());
+});
+
 var app = builder.Build();
 
 app.UseExceptionHandlingMiddleware();
 app.UseRouting();
 app.UseSwagger();
 app.UseSwaggerUI();
+
+// Use CORS
+app.UseCors();
 
 //auth
 app.UseHttpsRedirection();
