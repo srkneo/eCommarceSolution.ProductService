@@ -24,12 +24,19 @@ builder.Services.ConfigureHttpJsonOptions(options =>
     options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
 
+// Add Swagger
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
 
 app.UseExceptionHandlingMiddleware();
 app.UseRouting();
+app.UseSwagger();
+app.UseSwaggerUI();
 
 //auth
+app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
