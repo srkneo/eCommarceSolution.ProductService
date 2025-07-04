@@ -9,15 +9,12 @@ namespace ProductsMicroService.API.Middleware
         private readonly RequestDelegate _next;
         private readonly ILogger<ExceptionHandlingMiddleware> _logger;
 
-        public ExceptionHandlingMiddleware(ILogger<ExceptionHandlingMiddleware> logger)
+        public ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger)
         {
-            _logger = logger;   
+            _next = next ?? throw new ArgumentNullException(nameof(next));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public ExceptionHandlingMiddleware(RequestDelegate next)
-        {
-            _next = next;
-        }
 
         public async Task Invoke(HttpContext httpContext)
         {
