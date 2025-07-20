@@ -26,6 +26,7 @@ public static class ProductAPIEndpoints
             IProductsService productsService, Guid ProductID) =>
         {
             var product = await productsService.GetProductByCondition(p => p.ProductID == ProductID);
+
             return product != null ? Results.Ok(product) : Results.NotFound();
         });
 
