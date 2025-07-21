@@ -30,4 +30,5 @@ COPY --from=publish /app/publish .
 ENV MYSQL_HOST=localhost
 ENV MYSQL_PASSWORD=admin
 ENV MYSQL_DATABASE=ecommerceproductdatabase
+ENV MYSQL_USER=root
 ENTRYPOINT ["dotnet", "ProductsMicroService.API.dll"]
